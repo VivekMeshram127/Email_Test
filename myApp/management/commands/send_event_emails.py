@@ -32,5 +32,5 @@ class Command(BaseCommand):
                 error_message = f"Email template not found for event: {event_type}"
                 EmailLog.objects.create(event=event, status="Failed", error_message=error_message)
             except Exception as e:
-                error_message = f"Error sending email for event: {event_type} - {e}"
+                error_message = f"Error sending email for event : {event_type} - {e}"
                 EmailLog.objects.create(event=event, status="Failed", error_message=error_message)
