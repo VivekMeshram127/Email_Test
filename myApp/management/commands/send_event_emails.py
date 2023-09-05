@@ -2,8 +2,12 @@ from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
 from datetime import date
 import retrying
+import logging
 
 from myApp.models import Event, EmailLog, EmailTemplate
+
+# Create a logger
+logger = logging.getLogger(__name__)
 
 class Command(BaseCommand):
     help = 'Send event-related emails'
@@ -15,7 +19,12 @@ class Command(BaseCommand):
         from_email = 'your_email@example.com'
         recipient_list = [employee.email]
 
-        send_mail(subject, message, from_email, recipient_list)
+        try:
+            send_mail(subject, message, from_email, recipient_list)
+            logger.info(f"Email sent to {employee.email} for event: {event_type}")
+        except Exception as e:
+            logger.error(f"Error sending email to {employee.email} for event: {event_type} - {e}")
+
 
     def handle(self, *args, **options):
         today = date.today()
@@ -31,6 +40,8 @@ class Command(BaseCommand):
             except EmailTemplate.DoesNotExist:
                 error_message = f"Email template not found for event: {event_type}"
                 EmailLog.objects.create(event=event, status="Failed", error_message=error_message)
+                logger.error(error_message)
             except Exception as e:
                 error_message = f"Error sending email for event: {event_type} - {e}"
                 EmailLog.objects.create(event=event, status="Failed", error_message=error_message)
+                logger.error(error_message)
