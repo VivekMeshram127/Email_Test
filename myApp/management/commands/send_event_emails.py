@@ -1,10 +1,11 @@
 from django.core.management.base import BaseCommand
 from django.core.mail import send_mail
+from myApp.models import Event, EmailLog, EmailTemplate
 from datetime import date
 import retrying
 import logging
 
-from myApp.models import Event, EmailLog, EmailTemplate
+
 
 # Create a logger
 logger = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ class Command(BaseCommand):
     def send_email(self, employee, event_type, email_template):
         subject = f"Happy {event_type}!"
         message = email_template.template.format(employee.first_name)
-        from_email = 'your_email@example.com'
+        from_email = 'vivekmeshram127@gmail.com'
         recipient_list = [employee.email]
 
         try:

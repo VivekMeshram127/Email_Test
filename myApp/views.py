@@ -1,10 +1,23 @@
 from django.shortcuts import render
 from rest_framework import serializers, viewsets
-from .models import Employee, Event, EmailTemplate
+from myApp.models import Employee, Event, EmailTemplate
+from datetime import date
+
+from django.shortcuts import render
+from myApp.models import Event  # Import your Event model
+
+# def event_list(request):
+#     # Query the events from the database, adjust this query as needed
+#     events = Event.objects.filter(event_date=date.today())
+
+#     return render(request, "index.html", {'events': events})
+
 
 def home(request):
-    context={}
-    return render(request, "index.html", context)
+    # context={}
+    events = Event.objects.filter(event_date=date.today())
+
+    return render(request, "index.html",{'events': events})
 
 
 class EmployeeSerializer(serializers.ModelSerializer):

@@ -121,13 +121,27 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.office365.com'
+# EMAIL_PORT = 587 
+# EMAIL_USE_TLS = True  
+# EMAIL_USE_SSL = False  
+# EMAIL_HOST_USER = 'vivek_meshram12@outlook.com'
+# EMAIL_HOST_PASSWORD = 'Vivek@123'
+# DEFAULT_FROM_EMAIL = 'vivek_meshram12@outlook.com'
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 587 
-EMAIL_USE_TLS = True  
-EMAIL_USE_SSL = False  
-EMAIL_HOST_USER = '################################'
-EMAIL_HOST_PASSWORD = '################################################################'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Port for TLS
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False  # Set to False for TLS
+EMAIL_HOST_USER = 'vivekmeshram127@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'vrwvmqlvbjtpnikm'  # Your Gmail password or App Password
+
+# Default 'from' address for sending emails
+DEFAULT_FROM_EMAIL = 'vivekmeshram127@gmail.com'
