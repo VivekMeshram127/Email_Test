@@ -8,15 +8,7 @@ class Employee(models.Model):
 
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.employee_id})"
-
-class EmailTemplate(models.Model):
-    event_type = models.CharField(max_length=20)
-    subject = models.CharField(max_length=200)
-    template = models.TextField()
-
-    def __str__(self):
-        return f"{self.event_type} Template"
+        return f"{self.first_name} {self.last_name} ({self.employee_id})" 
 
 class Event(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
@@ -34,5 +26,15 @@ class EmailLog(models.Model):
 
     def __str__(self):
         return f"{self.event.event_type} Email Log - {self.sent_datetime}"
+
+
+class EmailTemplate(models.Model):
+    event_type = models.CharField(max_length=20)
+    subject = models.CharField(max_length=200)
+    template = models.TextField()
+
+    def __str__(self):
+        return f"{self.event_type} Template"
+
 
     
