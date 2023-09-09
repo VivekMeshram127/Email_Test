@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee, Event, EmailTemplate, EmailLog
+from myApp.models import Employee, Event, EmailTemplate, EmailLog
 
 admin.site.register(Employee)
 admin.site.register(Event)

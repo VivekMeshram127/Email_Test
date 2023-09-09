@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Event List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        p {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-    <h1>hello mike check</h1>>
+    <h1>Event List</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event.event_type }}</strong> on {{ event.event_date }}
+                <br>
+                Employee: {{ event.employee.first_name }} {{ event.employee.last_name }}
+            </li>
+        {% empty %}
+            <p>No events today.</p>
+        {% endfor %}
+    </ul>
 </body>
 </html>
